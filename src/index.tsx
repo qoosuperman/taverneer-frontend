@@ -2,7 +2,7 @@ import './index.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import App from './App'
 import SignIn from './components/SignIn'
@@ -14,13 +14,13 @@ const root = ReactDOM.createRoot(
 )
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="sign_in" element={<SignIn />} />
         <Route path="sign_out" element={<SignOut />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>
 )
 
