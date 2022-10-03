@@ -23,9 +23,9 @@ const SignIn: FC = () => {
   return (
     <form method="POST" onSubmit={handleSignIn}>
       <label htmlFor="email">信箱</label>
-      <input type="text" id="email" name="email" />
+      <input type="email" id="email" name="email" />
       <label htmlFor="password">密碼</label>
-      <input type="text" id="password" name="password" />
+      <input type="password" id="password" name="password" />
       <button>送出</button>
     </form>
   );
