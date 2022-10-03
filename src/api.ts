@@ -40,7 +40,7 @@ interface SignOutResponse {
 type ApiUserSignOut = () => Promise<AxiosResponse<SignOutResponse>>;
 
 export const apiUserSignOut: ApiUserSignOut = async () =>
-  await backendRequest.post<SignOutResponse>("/users/sign_out");
+  await backendRequest.delete<SignOutResponse>("/users/sign_out");
 
 // currentUser Api
 interface CurrentUserResponse {
