@@ -49,7 +49,7 @@ interface CurrentUserResponse {
   user?: { name: string };
 }
 
-type customApiCurrentUser = () => Promise<AxiosResponse<CurrentUserResponse>>;
+type ApiCurrentUser = () => Promise<AxiosResponse<CurrentUserResponse>>;
 
-export const apiCurrentUser: customApiCurrentUser = async () =>
+export const apiCurrentUser: ApiCurrentUser = async () =>
   await backendRequest.get<CurrentUserResponse>("/current_user");
