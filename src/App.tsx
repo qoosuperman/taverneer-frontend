@@ -7,23 +7,29 @@ import { Link } from "react-router-dom";
 import { apiCurrentUser } from "./api";
 
 const App: FC = () => {
-  const [loginString, setLoginString] = useState("正在確認中");
+  const [userName, setUserName] = useState("");
+  const [loginState, setLoginState] = useState("剛進入頁面");
 
   useEffect(() => {
+    setLoginState("正在確認中")
     apiCurrentUser()
       .then((res) => {
         if (!!res.data.user) {
-          setLoginString(res.data.user.name);
+          setUserName(res.data.user.name);
         }
       })
-      .catch((error) => setLoginString(error.message));
+      .catch((error) => setLoginState(error.message));
   }, []);
 
   return (
     <div className="App">
       Homepage
       <nav>
-        <h3>狀態： {loginString}</h3>
+        {(typeof userName === 'string' && userName.trim() !== '') ? (
+          <h3>名字： {userName}</h3>
+        ) : (
+          <h3>狀態： {loginState}</h3>
+        )}
         <Link to="/sign_in">Sign In</Link> |{" "}
         <Link to="/sign_out">Sign Out</Link>
       </nav>
