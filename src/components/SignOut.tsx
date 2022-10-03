@@ -6,7 +6,6 @@ import { apiUserSignOut } from "../api";
 const SignOut: FC = () => {
   const navigate = useNavigate();
   const handleSignout: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
     apiUserSignOut()
       .then(() => navigate("/"))
       .catch((error) => console.log(error));
