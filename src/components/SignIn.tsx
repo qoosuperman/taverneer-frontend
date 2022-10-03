@@ -3,14 +3,17 @@ import { useNavigate } from "react-router-dom";
 
 import { apiUserSignIn } from "../api";
 
+type Form = EventTarget & {
+  email: { value: string };
+  password: { value: string };
+};
+
 const SignIn: FC = () => {
   const navigate = useNavigate();
   const handleSignIn: MouseEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    // @ts-expect-error: 先不管這裡
-    const email = e.target.email.value;
-    // @ts-expect-error: 先不管這裡
-    const password = e.target.password.value;
+    const email = (e.target as Form).email.value;
+    const password = (e.target as Form).password.value;
 
     apiUserSignIn({ user: { email, password } })
       .then(() => navigate("/"))

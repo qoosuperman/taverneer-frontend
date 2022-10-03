@@ -11,8 +11,11 @@ const App: FC = () => {
 
   useEffect(() => {
     apiCurrentUser()
-      // @ts-expect-error: 先不管這裡
-      .then((res) => setLoginString(res.data.user.name))
+      .then((res) => {
+        if (!!res.data.user) {
+          setLoginString(res.data.user.name);
+        }
+      })
       .catch((error) => setLoginString(error.message));
   }, []);
 
