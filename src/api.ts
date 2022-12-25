@@ -6,9 +6,8 @@ export const axiosWithCredentials = axios;
 export default axios;
 
 // 定義 api baseUrl
-// TODO: 使用 env 定義不同環境 baseUrl
 const backendRequest = axios.create({
-  baseURL: "http://localhost:8000/api/v1/",
+  baseURL: `${process.env.REACT_APP_SERVER_BASEURL}api/v1/`
 });
 
 // signIn Api
