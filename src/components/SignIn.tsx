@@ -2,6 +2,7 @@ import type { FC, MouseEventHandler } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { apiUserSignIn } from "../api";
+import styles from "./SignIn.module.css"
 
 type Form = EventTarget & {
   email: { value: string };
@@ -26,7 +27,7 @@ const SignIn: FC = () => {
       <input type="email" id="email" name="email" />
       <label htmlFor="password">密碼</label>
       <input type="password" id="password" name="password" />
-      <button>送出</button>
+      <button className={styles.link_button}>送出</button>
     </form>
   );
 };
