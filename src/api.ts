@@ -1,4 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+
+import {ApiCurrentUser, ApiUserSignIn, ApiUserSignOut, CurrentUserResponse, SignInResponse, SignOutResponse} from "./api.type";
 
 axios.defaults.withCredentials = true;
 
@@ -11,44 +13,13 @@ const backendRequest = axios.create({
 });
 
 // signIn Api
-interface SignInFormParams {
-  user: {
-    email: string;
-    password: string;
-  };
-}
-
-interface SignInResponse {
-  status: string;
-  message: string;
-}
-
-type ApiUserSignIn = (
-  data: SignInFormParams
-) => Promise<AxiosResponse<SignInResponse>>;
-
 export const apiUserSignIn: ApiUserSignIn = async (data) =>
   await backendRequest.post<SignInResponse>("/users/sign_in", data);
 
 // signOut Api
-interface SignOutResponse {
-  status: string;
-  message: string;
-}
-
-type ApiUserSignOut = () => Promise<AxiosResponse<SignOutResponse>>;
-
 export const apiUserSignOut: ApiUserSignOut = async () =>
   await backendRequest.delete<SignOutResponse>("/users/sign_out");
 
 // currentUser Api
-interface CurrentUserResponse {
-  status: string;
-  message?: string;
-  user?: { name: string };
-}
-
-type ApiCurrentUser = () => Promise<AxiosResponse<CurrentUserResponse>>;
-
 export const apiCurrentUser: ApiCurrentUser = async () =>
   await backendRequest.get<CurrentUserResponse>("/current_user");
