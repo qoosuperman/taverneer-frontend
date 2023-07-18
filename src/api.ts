@@ -23,3 +23,14 @@ export const apiUserSignOut: ApiUserSignOut = async () =>
 // currentUser Api
 export const apiCurrentUser: ApiCurrentUser = async () =>
   await backendRequest.get<CurrentUserResponse>("/current_user");
+
+// ingredients Api
+// interface IngredientsResponse {
+//   status: string;
+//   ingredients: Array<{ name: string; }>;
+// }
+
+// type GetIngredients = () => Promise<AxiosResponse<IngredientsResponse>>;
+
+// export const GetIngredients: GetIngredients = async (data) =>
+//   await backendRequest.get<SignInResponse>("/admin/ingredients", data);

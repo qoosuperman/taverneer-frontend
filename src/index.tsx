@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import App from "./App";
+import Admin from "./components/Admin";
 import SignIn from "./components/SignIn";
 import SignOut from "./components/SignOut";
 import reportWebVitals from "./reportWebVitals";
@@ -19,6 +20,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="sign_in" element={<SignIn />} />
         <Route path="sign_out" element={<SignOut />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -31,7 +31,8 @@ const App: FC = () => {
           <h3>狀態： {loginState}</h3>
         )}
         <Link to="/sign_in">Sign In</Link> |{" "}
-        <Link to="/sign_out">Sign Out</Link>
+        <Link to="/sign_out">Sign Out</Link> |{" "}
+        <Link to="/admin">去後台</Link>
       </nav>
     </div>
   );
