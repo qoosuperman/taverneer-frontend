@@ -1,6 +1,7 @@
 import { type FC,useEffect,useState } from "react";
 
 import { apiGetIngredients } from "../../api";
+import BackStageGuardian from "./BackStageGuardian";
 
 interface Ingredient {
   id: string;
@@ -29,11 +30,13 @@ const AdminIngredientsList: FC = () => {
   }, []);
 
   return (
-    <div>
-      {ingredients.map((ingredient) => {
-        return <li key={ingredient.id}> id: {ingredient.id} name: {ingredient.name}</li>
-      })}
-    </div>
+    <BackStageGuardian>
+      <div>
+        {ingredients.map((ingredient) => {
+          return <li key={ingredient.id}> id: {ingredient.id} name: {ingredient.name}</li>
+        })}
+      </div>
+    </BackStageGuardian>
   );
 }
 
