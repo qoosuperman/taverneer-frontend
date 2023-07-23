@@ -33,3 +33,11 @@ export interface CurrentUserResponse {
 }
 
 export type ApiCurrentUser = () => Promise<AxiosResponse<CurrentUserResponse>>;
+
+// ingredients
+export interface IngredientsResponse {
+  status: string;
+  ingredients: Array<{ id: string, name: string; }>;
+}
+
+export type ApiGetIngredients = () => Promise<AxiosResponse<IngredientsResponse>>;
