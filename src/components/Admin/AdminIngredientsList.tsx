@@ -32,8 +32,8 @@ const AdminIngredientsList: FC = () => {
   return (
     <BackStageGuardian>
       <div>
-        {ingredients.map((ingredient) => {
-          return <li key={ingredient.id}> id: {ingredient.id} name: {ingredient.name}</li>
+        {ingredients.map(({id, name}) => {
+          return <li key={id}> id: {id} name: {name}</li>
         })}
       </div>
     </BackStageGuardian>
