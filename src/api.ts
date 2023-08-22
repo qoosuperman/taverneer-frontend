@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {ApiCurrentUser, ApiUserSignIn, ApiUserSignOut, CurrentUserResponse, SignInResponse, SignOutResponse} from "./api.type";
+import {ApiCurrentUser, ApiGetIngredients, ApiUserSignIn, ApiUserSignOut, CurrentUserResponse, IngredientsResponse, SignInResponse, SignOutResponse} from "./api.type";
 
 axios.defaults.withCredentials = true;
 
@@ -23,3 +23,7 @@ export const apiUserSignOut: ApiUserSignOut = async () =>
 // currentUser Api
 export const apiCurrentUser: ApiCurrentUser = async () =>
   await backendRequest.get<CurrentUserResponse>("/current_user");
+
+// ingredients Api
+export const apiGetIngredients: ApiGetIngredients = async () =>
+  await backendRequest.get<IngredientsResponse>("/admin/ingredients");

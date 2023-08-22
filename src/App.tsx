@@ -8,6 +8,7 @@ import { apiCurrentUser } from "./api";
 
 const App: FC = () => {
   const [userName, setUserName] = useState("");
+  const [canEnterBackStage, setCanEnterBackStage] = useState(false);
   const [loginState, setLoginState] = useState("剛進入頁面");
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const App: FC = () => {
       .then((res) => {
         if (!!res.data.user) {
           setUserName(res.data.user.name);
+          setCanEnterBackStage(res.data.user.is_admin);
         }
       })
       .catch((error) => setLoginState(error.message));
@@ -31,7 +33,8 @@ const App: FC = () => {
           <h3>狀態： {loginState}</h3>
         )}
         <Link to="/sign_in">Sign In</Link> |{" "}
-        <Link to="/sign_out">Sign Out</Link>
+        <Link to="/sign_out">Sign Out</Link> |{" "}
+        {canEnterBackStage && (<Link to="/admin">去後台</Link>)}
       </nav>
     </div>
   );

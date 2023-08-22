@@ -29,7 +29,15 @@ export type ApiUserSignOut = () => Promise<AxiosResponse<SignOutResponse>>;
 export interface CurrentUserResponse {
   status: string;
   message?: string;
-  user?: { name: string };
+  user?: { name: string, is_admin: boolean };
 }
 
 export type ApiCurrentUser = () => Promise<AxiosResponse<CurrentUserResponse>>;
+
+// ingredients
+export interface IngredientsResponse {
+  status: string;
+  ingredients: Array<{ id: string, name: string; }>;
+}
+
+export type ApiGetIngredients = () => Promise<AxiosResponse<IngredientsResponse>>;
