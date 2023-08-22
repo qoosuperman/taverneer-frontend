@@ -18,4 +18,5 @@ const authSlice = createSlice({
     },
   },
 });
+export const { clean, setIsAdmin } = authSlice.actions
 export const authSliceReducer = authSlice.reducer;
