@@ -1,4 +1,4 @@
-import { FC, Fragment, useEffect } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import { apiCurrentUser } from "../../../api";
@@ -10,9 +10,7 @@ import { BackStageGuardianProps } from "./BackStageGuardian.type";
 const BackStageGuardian: FC<BackStageGuardianProps> = ({ children }) => {
   const isAdmin = useAppSelector((state) => state.auth.isAdmin);
   const dispatch = useAppDispatch();
-
-  const isLoading = !isAdmin;
-  console.log(isAdmin, !isAdmin);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (isAdmin === null) {
@@ -22,12 +20,15 @@ const BackStageGuardian: FC<BackStageGuardianProps> = ({ children }) => {
             dispatch(setIsAdmin(res.data.user.is_admin));
           }
         })
-        .catch((_error) => dispatch(setIsAdmin(null)));
+        .catch((_error) => dispatch(setIsAdmin(null)))
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
     }
   }, [isAdmin, dispatch]);
 
-  if (!isAdmin) return <Navigate to="/404" />;
   if (isLoading) return <Loading />;
+  if (!isAdmin) return <Navigate to="/404" />;
 
   return <>{children}</>;
 };
