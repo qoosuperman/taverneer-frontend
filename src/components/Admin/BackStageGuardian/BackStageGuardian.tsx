@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 import { apiCurrentUser } from "../../../api";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { setIsAdmin } from "../../../store/authSlice";
+import { clean, setCurrentUser } from "../../../store/currentUserSlice";
 import Loading from "../../Loading";
 import { BackStageGuardianProps } from "./BackStageGuardian.type";
 
@@ -17,10 +17,10 @@ const BackStageGuardian: FC<BackStageGuardianProps> = ({ children }) => {
       apiCurrentUser()
         .then((res) => {
           if (!!res.data.user) {
-            dispatch(setIsAdmin(res.data.user.is_admin));
+            dispatch(setCurrentUser(res.data.user));
           }
         })
-        .catch((_error) => dispatch(setIsAdmin(null)))
+        .catch((_error) => dispatch(clean()))
         .finally(() => setIsLoading(false));
     } else {
       setIsLoading(false);
