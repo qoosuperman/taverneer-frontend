@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import styles from './Loading.module.css';
+import styles from "./Loading.module.css";
 
 const Loading: FC = () => {
   return (
@@ -8,6 +8,6 @@ const Loading: FC = () => {
       <div className={styles.spinner}></div>
     </div>
   );
-}
+};
 
 export default Loading;

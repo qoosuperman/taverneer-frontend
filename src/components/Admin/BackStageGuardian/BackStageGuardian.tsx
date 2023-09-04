@@ -1,27 +1,36 @@
 import { FC, Fragment, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import { apiCurrentUser } from "../../../api";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { clean, setCurrentUser } from "../../../store/currentUserSlice";
 import Loading from "../../Loading";
-import NotFound from "../../NotFound";
 import { BackStageGuardianProps } from "./BackStageGuardian.type";
 
-const BackStageGuardian: FC<BackStageGuardianProps> = ({children}) => {
-  const [canEnterBackStage, setCanEnterBackStage] = useState(false);
+const BackStageGuardian: FC<BackStageGuardianProps> = ({ children }) => {
+  const isAdmin = useAppSelector((state) => state.auth.isAdmin);
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    apiCurrentUser()
-      .then((res) => {
-        if (!!res.data.user) {
-          setCanEnterBackStage(res.data.user.is_admin);
-        }
-      })
-      .catch((_error) => setCanEnterBackStage(false))
-      .finally(() => setIsLoading(false));
-  }, []);
-  if(isLoading) return(<Loading />)
-  if(!canEnterBackStage) return(<NotFound />)
-  return (<>{children}</>)
-}
+    if (isAdmin === null) {
+      apiCurrentUser()
+        .then((res) => {
+          if (!!res.data.user) {
+            dispatch(setCurrentUser(res.data.user));
+          }
+        })
+        .catch((_error) => dispatch(clean()))
+        .finally(() => setIsLoading(false));
+    } else {
+      setIsLoading(false);
+    }
+  }, [isAdmin, dispatch]);
+
+  if (isLoading) return <Loading />;
+  if (!isAdmin) return <Navigate to="/404" />;
+
+  return <>{children}</>;
+};
 
 export default BackStageGuardian;
