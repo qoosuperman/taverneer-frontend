@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
   background-color: #333;
   color: white;
@@ -10,4 +11,9 @@
   top: 0;
   left: 0;
   right: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
 }
