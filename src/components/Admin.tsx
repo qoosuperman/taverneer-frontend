@@ -1,15 +1,17 @@
 import type { FC } from "react";
-import { Link } from "react-router-dom";
 
+// import { Link } from "react-router-dom";
 import BackStageGuardian from "./Admin/BackStageGuardian";
+import AdminSidebar from "./AdminSidebar";
+import Header from "./Header";
 
 const Admin: FC = () => {
-  return(
+  return (
     <BackStageGuardian>
-      <p>Admin</p>
-      <p><Link to="/admin/ingredients">ingedients list</Link></p>
+      <Header />
+      <AdminSidebar />
     </BackStageGuardian>
-  )
-}
+  );
+};
 
 export default Admin;
