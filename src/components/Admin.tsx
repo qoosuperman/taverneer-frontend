@@ -1,7 +1,6 @@
 import type { FC } from "react";
 
 import styles from "./Admin.module.css";
-// import { Link } from "react-router-dom";
 import BackStageGuardian from "./Admin/BackStageGuardian";
 import AdminRecipeCard from "./AdminRecipeCard";
 import AdminSidebar from "./AdminSidebar";
