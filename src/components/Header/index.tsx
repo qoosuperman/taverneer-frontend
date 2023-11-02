@@ -29,9 +29,8 @@ const Header: FC = () => {
   return (
     <div>
       <div className={styles.container}>
-        <div></div>
         <div>Taverneer</div>
-        <div>
+        <div className={styles.info}>
           {loginState === "已登入" ? <div>{userName}</div> : null}
           {loginState === "已登入" ? (
             <div>
